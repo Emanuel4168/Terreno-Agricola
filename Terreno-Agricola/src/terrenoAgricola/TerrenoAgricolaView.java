@@ -1,27 +1,58 @@
 package terrenoAgricola;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.util.*;
 import javax.swing.*;
 
 public class TerrenoAgricolaView extends JFrame{
 	
-	private JPanel centerPanel,southPanel;
-	
+	private JPanel centerPane,southPane;
+	private List<Hectarea> field;
 	
 	public TerrenoAgricolaView() {
 		super("Terreno Agricola");
-		setSize(800,800);
+		setSize(800,700);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		field = new LinkedList<Hectarea>();
+		centerPane = new JPanel();
+		southPane = new JPanel();
 		
+		createCenterPane();
+		createSouthPane();
+		setVisible(true);
 	}
 	
 	private void createCenterPane() {
+		centerPane.setLayout(new GridLayout(10,10,5,5));
 		
+		for(int i = 1; i <= 100; i++)
+			field.add(new Hectarea(i+""));
+		
+		field.forEach( hectarea ->{
+			hectarea.setOpaque(true);
+			hectarea.setBackground(Color.GREEN);
+			centerPane.add(hectarea);
+		});
+	
+		add(centerPane,BorderLayout.CENTER);
 	}
 	
 	private void createSouthPane() {
+		JLabel h1 = new JLabel("     "),h2 = new JLabel("     "),h3 = new JLabel("     ");
+		h1.setOpaque(true); h2.setOpaque(true); h3.setOpaque(true);
+		h1.setBackground(Color.red); h2.setBackground(Color.BLUE); h3.setBackground(Color.YELLOW);
 		
+		southPane.add(new JLabel("Hermano 1:"));
+		southPane.add(h1);
+		southPane.add(new JLabel("Hermano 2:"));
+		southPane.add(h2);
+		southPane.add(new JLabel("Hermano 3:"));
+		southPane.add(h3);
+		add(southPane,BorderLayout.SOUTH);
 	}
 
 }

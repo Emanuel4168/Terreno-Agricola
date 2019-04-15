@@ -2,14 +2,16 @@ package terrenoAgricola;
 
 import java.util.concurrent.Semaphore;
 
-public class Hectarea {
+import javax.swing.JLabel;
+
+public class Hectarea extends JLabel{
 	private boolean isOcuped;
 	private Semaphore semaphore;
 	
-	public Hectarea(boolean isOcuped, Semaphore semaphore) {
-		super();
-		this.isOcuped = isOcuped;
-		this.semaphore = semaphore;
+	public Hectarea(String txt) {
+		super(txt);
+		this.isOcuped = false;
+		this.semaphore = new Semaphore(1);
 	}
 
 	public boolean isOcuped() {
