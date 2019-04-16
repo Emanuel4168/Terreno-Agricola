@@ -6,12 +6,12 @@ import javax.swing.JLabel;
 
 public class Hectarea extends JLabel{
 	private boolean isOcuped;
-	private Semaphore semaphore;
+	private Semaforo semaphore;
 	
 	public Hectarea(String txt) {
 		super(txt);
 		this.isOcuped = false;
-		this.semaphore = new Semaphore(1);
+		this.semaphore = new Semaforo(1);
 	}
 
 	public boolean isOcuped() {
@@ -22,11 +22,11 @@ public class Hectarea extends JLabel{
 		this.isOcuped = isOcuped;
 	}
 
-	public Semaphore getSemaphore() {
+	public Semaforo getSemaphore() {
 		return semaphore;
 	}
 
-	public void setSemaphore(Semaphore semaphore) {
+	public void setSemaphore(Semaforo semaphore) {
 		this.semaphore = semaphore;
 	}
 	

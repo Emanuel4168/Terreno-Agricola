@@ -10,6 +10,8 @@ public class TerrenoAgricolaView extends JFrame{
 	
 	private JPanel centerPane,southPane;
 	private List<Hectarea> field;
+	private JButton btnStart;
+	private TerrenoAgricolaController controller;
 	
 	public TerrenoAgricolaView() {
 		super("Terreno Agricola");
@@ -20,6 +22,9 @@ public class TerrenoAgricolaView extends JFrame{
 		field = new LinkedList<Hectarea>();
 		centerPane = new JPanel();
 		southPane = new JPanel();
+		
+		btnStart = new JButton("Iniciar");
+		add(btnStart,BorderLayout.NORTH);
 		
 		createCenterPane();
 		createSouthPane();
@@ -53,6 +58,29 @@ public class TerrenoAgricolaView extends JFrame{
 		southPane.add(new JLabel("Hermano 3:"));
 		southPane.add(h3);
 		add(southPane,BorderLayout.SOUTH);
+	}
+	
+	public void start() {
+		Hermano h1 = new Hermano(field,Color.RED),
+				h2 = new Hermano(field,Color.BLUE),
+				h3 = new Hermano(field,Color.YELLOW);
+		
+		h1.start();
+		h2.start();
+		h3.start();
+		
+//		while(h1.isAlive() || h2.isAlive() || h3.isAlive()) {
+//			System.out.println("ALIVE");
+//		}
+	}
+	
+	public void setController(TerrenoAgricolaController controller) {
+		this.controller = controller;
+		btnStart.addActionListener(controller);
+	}
+	
+	public void update() {
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 
 }
